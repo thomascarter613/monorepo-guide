@@ -33,6 +33,7 @@ increments:
     title: "The Monorepo Is a Platform, Not a Folder Full of Packages"
     status: "draft"
     branch: "series/01-platform-mental-model"
+    pull_request: 3
     article: "articles/01-the-monorepo-is-a-platform.md"
     requirements: "docs/requirements/001-platform-mental-model.md"
     journal: "docs/journal/001-platform-mental-model.md"
