@@ -252,7 +252,7 @@ Planned evidence:
 ## UMS-EXE-001 — One authoritative repository task graph
 
 **Class:** Architecture constraint  
-**State:** Accepted
+**State:** Partial
 
 Routine repository build/test/lint/typecheck orchestration **MUST** have one authoritative task graph.
 
@@ -265,10 +265,17 @@ Acceptance criteria:
 - CI uses the same task definitions for equivalent work;
 - generator tooling does not silently introduce a second required execution graph.
 
-Planned evidence:
+Current evidence:
 
-- authority ADR;
-- task configuration;
+- `docs/architecture/authority-map.md` assigns repository project/task/affected/cache authority to Moon and defines the allowed roles of mise, Bun, Nx, and GitHub Actions around that graph;
+- `docs/artifacts/003-authority-capability-evidence.md` preserves the dated first-party capability evidence showing why the competing task-graph capabilities must be constrained.
+
+Remaining evidence:
+
+- implemented Moon task configuration;
+- root-command delegation without duplicated ordering;
+- CI/local task-definition parity;
+- generator/migration proof that Nx does not become a required routine execution graph;
 - command/CI inspection tests.
 
 ## UMS-EXE-002 — Explicit task inputs and outputs
