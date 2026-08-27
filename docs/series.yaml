@@ -50,14 +50,16 @@ increments:
     article_number: 2
     slug: "requirements-before-tools"
     title: "Requirements Before Tools: Writing the Monorepo Architecture Contract"
-    status: "draft"
+    status: "merged"
     branch: "series/02-requirements-contract"
     pull_request: 4
     starting_commit: "3e1c4161f3eb9d0c385430bd32d28a18b91516c2"
+    checkpoint_commit: "3c03fdbbf525a06853b283a8fa267b19648966dc"
+    mainline_commit: "bd70c92aad2278cc06844e539cf2dba938f9ad4b"
     article: "articles/02-requirements-before-tools.md"
     requirements: "docs/requirements/002-requirements-contract.md"
     journal: "docs/journal/002-requirements-contract.md"
     verification: "docs/verification/002-requirements-contract.md"
     architecture:
       - "docs/architecture/requirements-ledger.md"
-    note: "This is the first series increment whose requirements and journal were created prospectively under the already-merged engineering-record protocol."
+    note: "This is the first series increment whose requirements and journal were created prospectively under the already-merged engineering-record protocol. The reviewed PR head and mainline merge commit are recorded separately as immutable evidence."
