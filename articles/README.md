@@ -16,15 +16,20 @@ The underlying historical evidence lives in:
 - `../docs/verification/`
 - `../docs/artifacts/`
 
-Each finished article corresponds to a reproducible Git checkpoint.
+Each finished article corresponds to reproducible Git evidence. Branches are workflow pointers; immutable commit SHAs (and later normalized article tags) identify historical checkpoint state.
 
 ## Articles
 
-| Increment | Article | Status | Starting ref | Ending ref |
+| Increment | Article | Status | Starting ref | Checkpoint evidence |
 | --- | --- | --- | --- | --- |
-| 000 | Article 0 — What Does an “Ultimate Monorepo Starter” Actually Mean? | Draft | `series-start` / documentation baseline integrated during restack | pending `article-000` |
-| 001 | Article 1 — The Monorepo Is a Platform, Not a Folder Full of Packages | Draft | `series/00-first-principles` | pending `article-001` |
+| 000 | Article 0 — What Does an “Ultimate Monorepo Starter” Actually Mean? | Merged | `series-start` / documentation baseline integrated during restack | `836a511951ca4ceebc0fa2fdd0ace803be4fbb7c` |
+| 001 | Article 1 — The Monorepo Is a Platform, Not a Folder Full of Packages | Merged | Article 0 checkpoint | `be876f082eb6111b26b69e409f27f6bad9bf0d78` |
+| 002 | Article 2 — Requirements Before Tools: Writing the Monorepo Architecture Contract | Draft | `3e1c4161f3eb9d0c385430bd32d28a18b91516c2` (`main`) | pending review/merge |
 
 ### Early-series naming note
 
-Articles 0 and 1 were first drafted before the three-digit engineering-record convention was integrated into the series branches, so their source paths currently retain `00-...` and `01-...` prefixes. The mismatch is recorded rather than silently rewritten; a later repository-contract increment may normalize article-source naming if we decide the migration is worth doing.
+Articles 0 and 1 were first drafted before the three-digit engineering-record convention was integrated into the series branches, so their source paths retain `00-...` and `01-...` prefixes. Article 2 continues the reader-facing article number with `02-...` while its engineering-record files use the permanent three-digit increment identifier `002`.
+
+### Early stacked-branch note
+
+Article 1 was initially reviewed as a PR into the mutable Article 0 branch. Merging it advanced that branch before Article 0 was merged to `main`. The Git history preserved both states, but the branch name no longer represented an immutable Article 0 checkpoint. Article 2 converts that lesson into requirement `UMS-EVD-001`: accepted checkpoints must resolve to immutable Git evidence rather than only mutable branch names.
