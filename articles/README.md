@@ -24,7 +24,7 @@ Each finished article corresponds to reproducible Git evidence. Branches are wor
 | --- | --- | --- | --- | --- |
 | 000 | Article 0 — What Does an “Ultimate Monorepo Starter” Actually Mean? | Merged | `series-start` / documentation baseline integrated during restack | `836a511951ca4ceebc0fa2fdd0ace803be4fbb7c` |
 | 001 | Article 1 — The Monorepo Is a Platform, Not a Folder Full of Packages | Merged | Article 0 checkpoint | `be876f082eb6111b26b69e409f27f6bad9bf0d78` |
-| 002 | Article 2 — Requirements Before Tools: Writing the Monorepo Architecture Contract | Draft | `3e1c4161f3eb9d0c385430bd32d28a18b91516c2` (`main`) | pending review/merge |
+| 002 | Article 2 — Requirements Before Tools: Writing the Monorepo Architecture Contract | Merged | `3e1c4161f3eb9d0c385430bd32d28a18b91516c2` (`main`) | `3c03fdbbf525a06853b283a8fa267b19648966dc` (PR head), mainline merge `bd70c92aad2278cc06844e539cf2dba938f9ad4b` |
 
 ### Early-series naming note
 
