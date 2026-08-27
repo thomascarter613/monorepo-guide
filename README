@@ -32,14 +32,28 @@ The governing principle is simple:
 
 ## Current checkpoint
 
-We are reviewing **Article 2: Requirements Before Tools: Writing the Monorepo Architecture Contract**.
+**Article 2: Requirements Before Tools: Writing the Monorepo Architecture Contract** is accepted on `main`.
 
-This checkpoint introduces the living product requirements ledger and a traceability model from requirement → acceptance criteria → implementation/decision → verification → durable evidence.
+It introduced the living product requirements ledger and a traceability model from requirement → acceptance criteria → implementation/decision → verification → durable evidence.
 
 The ledger is deliberately tool-neutral. Bun, mise, Moon, Nx, Biome, and the rest of the planned stack remain implementation candidates until later increments demonstrate that they satisfy the requirements assigned to their concerns.
 
-A second engineering finding is now part of the contract: mutable article branches are workflow pointers, not immutable checkpoint identities. The Article 0/1 stacked-merge sequence preserved the content but demonstrated why accepted checkpoints must resolve to immutable commit/tag evidence.
+The accepted Article 2 review head is:
+
+`3c03fdbbf525a06853b283a8fa267b19648966dc`
+
+Its mainline merge commit is:
+
+`bd70c92aad2278cc06844e539cf2dba938f9ad4b`
+
+Those immutable references are recorded separately from the mutable development branch, applying requirement `UMS-EVD-001` immediately.
+
+## Next
+
+**Article 3 — Choosing Authorities: Who Owns Packages, Tools, Tasks, Generation, and CI?**
+
+The next increment will evaluate the overlapping capabilities discovered in Article 1 against the stable requirements established in Article 2, then turn the Bun/mise/Moon/Nx responsibility map from a preference into explicit, falsifiable architecture decisions.
 
 ### Historical note
 
-The first Article 0/1 drafts began before the engineering-record protocol was merged to `main`. Their historical files disclose the retrospective portions. Articles 0 and 1 are now accepted on `main`; their exact pre-merge checkpoint commits remain recorded separately from the mutable branch names that were used during review.
+The first Article 0/1 drafts began before the engineering-record protocol was merged to `main`. Their historical files disclose the retrospective portions. The stacked Article 0/1 merge sequence also demonstrated why branch names are insufficient as permanent checkpoint identities; the exact immutable checkpoint commits are recorded in `docs/series.yaml` and `articles/README.md`.
