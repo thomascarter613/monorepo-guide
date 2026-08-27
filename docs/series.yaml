@@ -1,0 +1,14 @@
+series:
+  title: "Building the Ultimate Monorepo Starter from First Principles"
+  subtitle: "A tutorial, engineering log, architecture journal, and reproducible build from an empty directory to a production-grade polyglot workspace."
+
+repository:
+  initial_ref: "series-start"
+  initial_commit: "c7bfe90d22ebe89f3a03c39590d5de9dc68c2d1c"
+
+conventions:
+  increment_format: "NNN"
+  adr_format: "ADR-NNNN"
+  checkpoint_format: "article-NNN"
+
+increments: []

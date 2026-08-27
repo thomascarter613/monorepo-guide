@@ -1,0 +1,59 @@
+# Engineering Documentation 
+
+This directory preserves both the current architecture of the repository and the historical record of how that architecture was developed. 
+
+The documentation is deliberately divided by responsibility. 
+
+## Current-state documentation `architecture/` 
+
+Describes how the repository works now. 
+
+These documents evolve as the architecture changes. 
+
+## Requirements `requirements/` 
+
+Defines the problem, constraints, requirements, and acceptance criteria for each engineering increment before implementation begins. 
+
+Requirements describe what must become true, not which technology must be used to make it true. 
+
+## Engineering journal `journal/` 
+
+Preserves the chronological engineering record for each increment. 
+
+Journal entries include assumptions, questions, experiments, failures, observations, corrections, and conclusions. 
+
+Journal entries preserve what was known at the time and should not be retrospectively rewritten to make the engineering process appear cleaner than it actually was. 
+
+## Architecture Decision Records `decisions/` 
+
+Contains Architecture Decision Records (ADRs) for consequential technical decisions. 
+
+Accepted ADRs are historical records. 
+
+When a decision changes, create a new ADR that supersedes the previous ADR rather than rewriting history. 
+
+## Verification `verification/` 
+
+Records how the requirements for an increment were verified and whether their acceptance criteria passed. 
+
+Where practical, verification should be executable rather than purely descriptive. 
+
+## Artifacts `artifacts/` 
+
+Stores raw evidence that is useful to preserve but too verbose for the engineering journal, such as command output, benchmark results, generated reports, dependency graphs, or failure logs. 
+
+Artifacts are organized by increment number. 
+
+## Article sources `../articles/` 
+
+Contains the reader-facing article produced from the engineering record. 
+
+The article is a curated explanation of the work. 
+
+It is not the canonical historical record. 
+
+## Core principle 
+
+Preserve what we knew at the time. 
+
+Document what we know now separately.
