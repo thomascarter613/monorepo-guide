@@ -1,59 +1,39 @@
-# Engineering Documentation 
+# Building the Ultimate Monorepo Starter from First Principles
 
-This directory preserves both the current architecture of the repository and the historical record of how that architecture was developed. 
+*A tutorial, engineering log, architecture journal, and reproducible build from an empty directory to a production-grade polyglot workspace.*
 
-The documentation is deliberately divided by responsibility. 
+This repository is the canonical implementation and engineering record for the series. We build the starter and the written record together: each article introduces a real repository increment, preserves the evidence that shaped it, verifies the result, and leaves a checkpoint the next increment can build on.
 
-## Current-state documentation `architecture/` 
+## Start here
 
-Describes how the repository works now. 
+- `articles/` contains the reader-facing tutorial + engineering-log installments.
+- `docs/series-roadmap.md` contains the evolving curriculum and article sequence.
+- `docs/series.yaml` is the machine-readable series/increment index.
+- `docs/ENGINEERING.md` defines the engineering protocol used for increments.
+- `docs/README.md` explains the engineering-record directories.
+- `docs/architecture/definition-of-ultimate.md` defines the properties the finished starter must prove.
 
-These documents evolve as the architecture changes. 
+## Engineering record
 
-## Requirements `requirements/` 
+The documentation system intentionally separates current architecture from historical evidence:
 
-Defines the problem, constraints, requirements, and acceptance criteria for each engineering increment before implementation begins. 
+- `docs/requirements/` — what an increment must make true;
+- `docs/journal/` — assumptions, experiments, failures, corrections, and conclusions;
+- `docs/decisions/` — consequential architecture decisions;
+- `docs/verification/` — requirement-by-requirement evidence;
+- `docs/artifacts/` — raw evidence too verbose for the journal;
+- `docs/architecture/` — how the repository works now.
 
-Requirements describe what must become true, not which technology must be used to make it true. 
+The governing principle is simple:
 
-## Engineering journal `journal/` 
+> Preserve what we knew at the time. Document what we know now separately.
 
-Preserves the chronological engineering record for each increment. 
+## Current checkpoint
 
-Journal entries include assumptions, questions, experiments, failures, observations, corrections, and conclusions. 
+We are reviewing **Article 0: What Does an “Ultimate Monorepo Starter” Actually Mean?**
 
-Journal entries preserve what was known at the time and should not be retrospectively rewritten to make the engineering process appear cleaner than it actually was. 
+This checkpoint defines the product, non-goals, architectural principles, success criteria, falsifiable assumptions, and evidence standard before implementation tooling is selected.
 
-## Architecture Decision Records `decisions/` 
+### Historical note
 
-Contains Architecture Decision Records (ADRs) for consequential technical decisions. 
-
-Accepted ADRs are historical records. 
-
-When a decision changes, create a new ADR that supersedes the previous ADR rather than rewriting history. 
-
-## Verification `verification/` 
-
-Records how the requirements for an increment were verified and whether their acceptance criteria passed. 
-
-Where practical, verification should be executable rather than purely descriptive. 
-
-## Artifacts `artifacts/` 
-
-Stores raw evidence that is useful to preserve but too verbose for the engineering journal, such as command output, benchmark results, generated reports, dependency graphs, or failure logs. 
-
-Artifacts are organized by increment number. 
-
-## Article sources `../articles/` 
-
-Contains the reader-facing article produced from the engineering record. 
-
-The article is a curated explanation of the work. 
-
-It is not the canonical historical record. 
-
-## Core principle 
-
-Preserve what we knew at the time. 
-
-Document what we know now separately.
+Article 0 was first drafted from the original `series-start` state before the engineering-record protocol was merged to `main`. The branch was subsequently restacked on top of that documentation infrastructure rather than overwriting it. The journal for increment `000` records that chronology explicitly; the record files are therefore partly retrospective and do not pretend to have existed before the work they describe.

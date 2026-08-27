@@ -11,4 +11,18 @@ conventions:
   adr_format: "ADR-NNNN"
   checkpoint_format: "article-NNN"
 
-increments: []
+increments:
+  - id: "000"
+    article_number: 0
+    slug: "what-does-ultimate-mean"
+    title: "What Does an ‘Ultimate Monorepo Starter’ Actually Mean?"
+    status: "draft"
+    branch: "series/00-first-principles"
+    pull_request: 1
+    article: "articles/00-what-does-ultimate-mean.md"
+    requirements: "docs/requirements/000-first-principles.md"
+    journal: "docs/journal/000-first-principles.md"
+    verification: "docs/verification/000-first-principles.md"
+    architecture:
+      - "docs/architecture/definition-of-ultimate.md"
+    note: "Article 0 began before the engineering-record protocol was merged; its record files explicitly mark the retrospective portion of the record."
