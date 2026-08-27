@@ -9,6 +9,7 @@ Unlike the engineering journal, numbered increment requirements, and accepted AD
 - `definition-of-ultimate.md` — broad product properties, non-goals, principles, hypotheses, and completion criteria.
 - `system-model.md` — tool-independent repository/platform vocabulary and conceptual layers.
 - `requirements-ledger.md` — stable product requirement IDs, acceptance criteria, evidence states, and planned/current proof.
+- `authority-map.md` — provisional concern-by-concern ownership boundaries for mise, Bun, Moon, Nx, GitHub Actions, the repository command surface, and future ecosystem-native authorities.
 
 These documents answer different questions:
 
@@ -21,6 +22,10 @@ system-model.md
 
 requirements-ledger.md
     What specific promises must the product prove?
+
+authority-map.md
+    Which concern is currently authorized to be owned by which system,
+    and which overlapping capabilities are deliberately non-authoritative?
 ```
 
 Historical reasoning belongs in:
@@ -29,6 +34,7 @@ Historical reasoning belongs in:
 - `../decisions/`
 - `../requirements/NNN-*.md`
 - `../verification/`
+- `../artifacts/`
 
 The governing rule is:
 
