@@ -70,6 +70,7 @@ increments:
     title: "Choosing Authorities: Who Owns Packages, Tools, Tasks, Generation, and CI?"
     status: "draft"
     branch: "series/03-authority-boundaries"
+    pull_request: 5
     starting_commit: "44951cd93646c2fb2dda63f384238401ef2bbc8c"
     article: "articles/03-choosing-authorities.md"
     requirements: "docs/requirements/003-authority-boundaries.md"
