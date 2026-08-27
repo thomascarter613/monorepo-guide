@@ -52,6 +52,7 @@ increments:
     title: "Requirements Before Tools: Writing the Monorepo Architecture Contract"
     status: "draft"
     branch: "series/02-requirements-contract"
+    pull_request: 4
     starting_commit: "3e1c4161f3eb9d0c385430bd32d28a18b91516c2"
     article: "articles/02-requirements-before-tools.md"
     requirements: "docs/requirements/002-requirements-contract.md"
