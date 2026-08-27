@@ -267,6 +267,7 @@ Each article should:
 ## Current status
 
 - [x] Article 0 scope and architecture contract
+- [x] Article 1 repository-platform system model
 - [ ] Arc I implementation complete
 - [ ] Repository kernel complete
 - [ ] Reproducible environment complete

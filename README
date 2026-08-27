@@ -12,6 +12,7 @@ This repository is the canonical implementation and engineering record for the s
 - `docs/ENGINEERING.md` defines the engineering protocol used for increments.
 - `docs/README.md` explains the engineering-record directories.
 - `docs/architecture/definition-of-ultimate.md` defines the properties the finished starter must prove.
+- `docs/architecture/system-model.md` defines the cross-tool repository-platform vocabulary.
 
 ## Engineering record
 
@@ -30,10 +31,12 @@ The governing principle is simple:
 
 ## Current checkpoint
 
-We are reviewing **Article 0: What Does an “Ultimate Monorepo Starter” Actually Mean?**
+We are reviewing **Article 1: The Monorepo Is a Platform, Not a Folder Full of Packages**.
 
-This checkpoint defines the product, non-goals, architectural principles, success criteria, falsifiable assumptions, and evidence standard before implementation tooling is selected.
+This checkpoint defines repository vs workspace, project vs package, dependency/project/task graphs, environment vs orchestrator toolchains, affected work, caching, generation, migrations, policy, and delivery boundaries.
+
+Its first real implementation finding is already recorded: Bun, mise, Moon, and Nx expose overlapping capabilities, so the repository must distinguish **what a tool can do** from **what the architecture authorizes it to own**.
 
 ### Historical note
 
-Article 0 was first drafted from the original `series-start` state before the engineering-record protocol was merged to `main`. The branch was subsequently restacked on top of that documentation infrastructure rather than overwriting it. The journal for increment `000` records that chronology explicitly; the record files are therefore partly retrospective and do not pretend to have existed before the work they describe.
+The first Article 0/1 drafts began before the engineering-record protocol was merged to `main`. The stacked series branches were subsequently restacked on top of that documentation infrastructure rather than overwriting it. Increments `000` and `001` disclose where their record files are retrospective.
