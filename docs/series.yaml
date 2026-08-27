@@ -11,4 +11,33 @@ conventions:
   adr_format: "ADR-NNNN"
   checkpoint_format: "article-NNN"
 
-increments: []
+increments:
+  - id: "000"
+    article_number: 0
+    slug: "what-does-ultimate-mean"
+    title: "What Does an ‘Ultimate Monorepo Starter’ Actually Mean?"
+    status: "draft"
+    branch: "series/00-first-principles"
+    pull_request: 1
+    article: "articles/00-what-does-ultimate-mean.md"
+    requirements: "docs/requirements/000-first-principles.md"
+    journal: "docs/journal/000-first-principles.md"
+    verification: "docs/verification/000-first-principles.md"
+    architecture:
+      - "docs/architecture/definition-of-ultimate.md"
+    note: "Article 0 began before the engineering-record protocol was merged; its record files explicitly mark the retrospective portion of the record."
+
+  - id: "001"
+    article_number: 1
+    slug: "platform-mental-model"
+    title: "The Monorepo Is a Platform, Not a Folder Full of Packages"
+    status: "draft"
+    branch: "series/01-platform-mental-model"
+    pull_request: 3
+    article: "articles/01-the-monorepo-is-a-platform.md"
+    requirements: "docs/requirements/001-platform-mental-model.md"
+    journal: "docs/journal/001-platform-mental-model.md"
+    verification: "docs/verification/001-platform-mental-model.md"
+    architecture:
+      - "docs/architecture/system-model.md"
+    note: "Research began before the engineering-record protocol was integrated into the series stack; the journal records the restack and the tool-capability overlap discovery."
