@@ -1,6 +1,6 @@
 # 003 — Choosing Authorities
 
-Status: **In progress**
+Status: **Complete — verification passed, pending review checkpoint**
 
 ## Starting state
 
@@ -90,7 +90,7 @@ Capability is broader than authority.
 
 ### Changed
 
-The authority map will assign Bun the JavaScript package/workspace role and the default Bun-runtime role while leaving testing/build-tool decisions to later concern-specific articles.
+The authority map assigns Bun the JavaScript package/workspace role and the default Bun-runtime role while leaving testing/build-tool decisions to later concern-specific articles.
 
 ## Finding 2 — mise is also a real task orchestrator
 
@@ -121,7 +121,7 @@ If we put ordinary `build`, `test`, `lint`, and `typecheck` dependency relations
 
 ### Changed
 
-mise tasks, if used at all, will be constrained to environment/bootstrap operations that exist before or outside the repository project/task graph. Routine project validation and build ordering belongs to Moon.
+mise tasks, if used at all, are constrained to environment/bootstrap operations that exist before or outside the repository project/task graph. Routine project validation and build ordering belongs to Moon.
 
 ## Finding 3 — mise now has a project tool lockfile
 
@@ -279,7 +279,7 @@ A workflow may say “validation must finish before a privileged release job,”
 
 ### Changed
 
-The authority map will distinguish repository task dependencies from CI job dependencies and define allowable hosted-only concerns.
+The authority map distinguishes repository task dependencies from CI job dependencies and defines allowable hosted-only concerns.
 
 ## Finding 8 — polyglot support remains genuinely unproved
 
@@ -297,7 +297,7 @@ Selecting Moon today does not let us claim the Python portion of our polyglot pr
 
 Python integration remains an explicit exit criterion. If the later Python increment requires root-level redesign, duplicated graph state, or unacceptable workarounds, the Moon authority decision must be reconsidered.
 
-## Provisional authority map emerging from research
+## Provisional authority map after research
 
 | Concern | Provisional authority | Important non-authoritative participants |
 | --- | --- | --- |
@@ -313,6 +313,23 @@ Python integration remains an explicit exit criterion. If the later Python incre
 | Hosted CI event/runner/permission orchestration | GitHub Actions | repository commands/Moon perform equivalent repo work |
 | Root developer command surface | Repository-owned interface | delegates to mise/Bun/Moon/Nx as appropriate |
 
+## Product-requirement state change
+
+`UMS-EXE-001` moved from **Accepted** to **Partial**.
+
+Reason:
+
+- Article 3 now documents the authority for repository project/task relationships and the prohibited shadow graphs.
+
+It remains unverified because we have not yet proved:
+
+- real task configuration;
+- root-command delegation;
+- CI/local task-definition parity;
+- Nx generator isolation.
+
+No other implementation requirement advances merely because an authority has been selected.
+
 ## Deliberately unresolved
 
 - exact Moon v2 configuration needed to retain JavaScript/Bun ecosystem integration while preventing version/dependency-install authority overlap;
@@ -324,12 +341,34 @@ Python integration remains an explicit exit criterion. If the later Python incre
 - quantitative performance conclusions;
 - Python integration quality.
 
-## Next work
+## Completed work
 
-- preserve the source/capability evidence in `docs/artifacts/003-authority-capability-evidence.md`;
-- write the current-state `docs/architecture/authority-map.md`;
-- update living requirement evidence states conservatively;
-- write Article 3;
-- verify every increment requirement;
-- update series indexes/metadata;
-- open a draft PR.
+- created the dated first-party capability evidence artifact;
+- created the current-state authority map;
+- updated `UMS-EXE-001` conservatively to Partial;
+- wrote Article 3;
+- updated architecture/root/article/series indexes;
+- produced requirement-by-requirement verification with PASS for all ten increment requirements.
+
+## Verification result
+
+See `../verification/003-authority-boundaries.md`.
+
+All Article 3 increment requirements pass at the architecture/evidence level appropriate to this checkpoint.
+
+No package/task/CI implementation has been claimed or introduced.
+
+## Ending state before PR bookkeeping
+
+A branch comparison against `main` before the verification/PR-number bookkeeping showed:
+
+- 10 commits ahead;
+- 0 commits behind;
+- 10 changed paths;
+- no installed Bun/mise/Moon/Nx/GitHub Actions implementation configuration.
+
+A final compare will be captured in the PR description after all metadata changes are complete.
+
+## Next
+
+Article 4 will formalize the ADR/experiment/exit-criteria lifecycle so consequential authority choices can later be superseded without rewriting this history.
