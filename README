@@ -13,17 +13,18 @@ This repository is the canonical implementation and engineering record for the s
 - `docs/README.md` explains the engineering-record directories.
 - `docs/architecture/definition-of-ultimate.md` defines the properties the finished starter must prove.
 - `docs/architecture/system-model.md` defines the cross-tool repository-platform vocabulary.
+- `docs/architecture/requirements-ledger.md` turns those properties into stable, testable product requirements and evidence obligations.
 
 ## Engineering record
 
 The documentation system intentionally separates current architecture from historical evidence:
 
-- `docs/requirements/` — what an increment must make true;
+- `docs/requirements/` — what a specific increment intended to make true;
 - `docs/journal/` — assumptions, experiments, failures, corrections, and conclusions;
 - `docs/decisions/` — consequential architecture decisions;
 - `docs/verification/` — requirement-by-requirement evidence;
 - `docs/artifacts/` — raw evidence too verbose for the journal;
-- `docs/architecture/` — how the repository works now.
+- `docs/architecture/` — how the repository and current product contract work now.
 
 The governing principle is simple:
 
@@ -31,12 +32,14 @@ The governing principle is simple:
 
 ## Current checkpoint
 
-We are reviewing **Article 1: The Monorepo Is a Platform, Not a Folder Full of Packages**.
+We are reviewing **Article 2: Requirements Before Tools: Writing the Monorepo Architecture Contract**.
 
-This checkpoint defines repository vs workspace, project vs package, dependency/project/task graphs, environment vs orchestrator toolchains, affected work, caching, generation, migrations, policy, and delivery boundaries.
+This checkpoint introduces the living product requirements ledger and a traceability model from requirement → acceptance criteria → implementation/decision → verification → durable evidence.
 
-Its first real implementation finding is already recorded: Bun, mise, Moon, and Nx expose overlapping capabilities, so the repository must distinguish **what a tool can do** from **what the architecture authorizes it to own**.
+The ledger is deliberately tool-neutral. Bun, mise, Moon, Nx, Biome, and the rest of the planned stack remain implementation candidates until later increments demonstrate that they satisfy the requirements assigned to their concerns.
+
+A second engineering finding is now part of the contract: mutable article branches are workflow pointers, not immutable checkpoint identities. The Article 0/1 stacked-merge sequence preserved the content but demonstrated why accepted checkpoints must resolve to immutable commit/tag evidence.
 
 ### Historical note
 
-The first Article 0/1 drafts began before the engineering-record protocol was merged to `main`. The stacked series branches were subsequently restacked on top of that documentation infrastructure rather than overwriting it. Increments `000` and `001` disclose where their record files are retrospective.
+The first Article 0/1 drafts began before the engineering-record protocol was merged to `main`. Their historical files disclose the retrospective portions. Articles 0 and 1 are now accepted on `main`; their exact pre-merge checkpoint commits remain recorded separately from the mutable branch names that were used during review.
