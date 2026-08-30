@@ -92,6 +92,7 @@ increments:
     title: "Reversible Architecture: ADRs, Experiments, and Exit Criteria"
     status: "draft"
     branch: "series/04-reversible-architecture"
+    pull_request: 6
     starting_commit: "553f457b01d554429f7117f1e2ca824386835e37"
     article: "articles/04-reversible-architecture.md"
     requirements: "docs/requirements/004-reversible-architecture.md"
