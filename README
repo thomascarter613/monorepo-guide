@@ -33,28 +33,44 @@ The governing principle is simple:
 
 ## Current checkpoint
 
-We are reviewing **Article 3 — Choosing Authorities: Who Owns Packages, Tools, Tasks, Generation, and CI?**
+**Article 3 — Choosing Authorities: Who Owns Packages, Tools, Tasks, Generation, and CI?** is accepted on `main`.
 
-This checkpoint turns the candidate stack into explicit, falsifiable responsibility boundaries:
+It established a provisional concern-by-concern authority model:
 
 - **mise** — supported executable/tool version resolution and installation;
 - **Bun** — JavaScript package/workspace dependency state and default Bun runtime semantics;
-- **Moon** — repository project/task graph, affected analysis, execution ordering, and task-result cache semantics;
+- **repository-owned project contract** — durable project identity and stable project metadata;
+- **Moon** — operational project/task graph, affected analysis, execution ordering, and task-result cache semantics;
 - **Nx** — generators, migrations, and codemod-style repository transformations only;
 - **GitHub Actions** — hosted CI events, runners, permissions, matrices, secrets, and other hosted orchestration concerns;
-- **the repository** — stable developer-facing root command contract that delegates to those authorities.
+- **the repository** — stable developer-facing root command contract that delegates to those authorities;
+- **ecosystem-native tools** — future Rust/Python/etc. package/build semantics.
 
-The most important implementation obligation discovered in this increment is the mise/Moon/Bun boundary: Moon v2 can itself install runtimes through proto and automatically install ecosystem dependencies, so later configuration must prove that Moon can retain useful Bun/project integration while consuming mise-provided executables and leaving JavaScript dependency installation to Bun.
+The key architectural rule is:
 
-The working Article 3 branch starts from immutable mainline commit:
+> Participation is not authority.
 
-`44951cd93646c2fb2dda63f384238401ef2bbc8c`
+Tools may consume or transform state owned elsewhere without becoming a competing source of truth for that concern.
 
-## Next after acceptance
+Article 3's final review also separated durable repository-owned project identity from Moon's operational project graph. Replacing Moon should therefore be an orchestrator migration, not a redefinition of what every project is.
+
+The accepted Article 3 review head is:
+
+`18eac99295dad13cf8ccc907561579e785e32a6d`
+
+Its mainline merge commit is:
+
+`903f009bc4ed708d14c5ee19b683ae6445bb2717`
+
+Those immutable references are recorded in `docs/series.yaml` and `articles/README.md`.
+
+## Next
 
 **Article 4 — Reversible Architecture: ADRs, Experiments, and Exit Criteria**
 
-Article 4 will turn consequential decisions like the authority map into an explicit decision lifecycle: proposed/accepted/superseded states, evidence obligations, experiments, exit criteria, and historical rationale that can survive later architectural reversals.
+The next increment will formalize how consequential decisions move from hypothesis to accepted architecture and later to supersession when evidence changes. It will define the relationship among ADRs, experiments, assumptions, acceptance evidence, exit criteria, current-state architecture, and preserved historical rationale.
+
+Article 4 should leave us with a decision system strong enough to record choices such as the Article 3 authority map without turning provisional architecture into permanent dogma.
 
 ### Historical note
 
