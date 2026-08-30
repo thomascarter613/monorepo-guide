@@ -15,6 +15,7 @@ This repository is the canonical implementation and engineering record for the s
 - `docs/architecture/system-model.md` defines the cross-tool repository-platform vocabulary.
 - `docs/architecture/requirements-ledger.md` turns those properties into stable, testable product requirements and evidence obligations.
 - `docs/architecture/authority-map.md` assigns provisional concern-by-concern ownership and defines prohibited shadow authorities.
+- `docs/architecture/decision-system.md` defines how consequential architecture decisions, experiments, reconsideration criteria, and supersession work.
 
 ## Engineering record
 
@@ -22,9 +23,10 @@ The documentation system intentionally separates current architecture from histo
 
 - `docs/requirements/` — what a specific increment intended to make true;
 - `docs/journal/` — assumptions, experiments, failures, corrections, and conclusions;
-- `docs/decisions/` — consequential architecture decisions;
+- `docs/decisions/` — consequential architecture decisions and their historical rationale;
+- `docs/experiments/` — standalone consequential/reusable experiment records when a journal section is insufficient;
 - `docs/verification/` — requirement-by-requirement evidence;
-- `docs/artifacts/` — raw evidence too verbose for the journal;
+- `docs/artifacts/` — raw evidence too verbose for journals/experiments;
 - `docs/architecture/` — how the repository and current product contract work now.
 
 The governing principle is simple:
@@ -33,44 +35,35 @@ The governing principle is simple:
 
 ## Current checkpoint
 
-**Article 3 — Choosing Authorities: Who Owns Packages, Tools, Tasks, Generation, and CI?** is accepted on `main`.
+We are reviewing **Article 4 — Reversible Architecture: ADRs, Experiments, and Exit Criteria**.
 
-It established a provisional concern-by-concern authority model:
+Article 4 formalizes how architecture changes without rewriting history:
 
-- **mise** — supported executable/tool version resolution and installation;
-- **Bun** — JavaScript package/workspace dependency state and default Bun runtime semantics;
-- **repository-owned project contract** — durable project identity and stable project metadata;
-- **Moon** — operational project/task graph, affected analysis, execution ordering, and task-result cache semantics;
-- **Nx** — generators, migrations, and codemod-style repository transformations only;
-- **GitHub Actions** — hosted CI events, runners, permissions, matrices, secrets, and other hosted orchestration concerns;
-- **the repository** — stable developer-facing root command contract that delegates to those authorities;
-- **ecosystem-native tools** — future Rust/Python/etc. package/build semantics.
+- ADRs have stable `ADR-NNNN` identities and explicit Proposed → Accepted/Rejected/Withdrawn → Superseded semantics;
+- accepted ADR substance is historical, while narrow supersession/link metadata may be added later;
+- current-state architecture remains separate from decision history;
+- experiments produce evidence but do not make decisions;
+- standalone `EXP-NNNN` records are used only when evidence is consequential/reusable enough to deserve a separate identity;
+- material ADR assumptions and reconsideration criteria are explicit;
+- decision status is kept separate from product-requirement evidence state.
 
-The key architectural rule is:
+The Article 3 authority model is now represented by independently reversible ADRs rather than one coupled “use this stack” decision.
 
-> Participation is not authority.
+Important deliberate non-claims:
 
-Tools may consume or transform state owned elsewhere without becoming a competing source of truth for that concern.
+- no tool implementation has been proven merely because its ADR is Accepted;
+- no fake standalone experiment was created just because the template now exists;
+- `UMS-GEN-003` remains Partial until the first **real** superseding ADR/migration provides the remaining evidence.
 
-Article 3's final review also separated durable repository-owned project identity from Moon's operational project graph. Replacing Moon should therefore be an orchestrator migration, not a redefinition of what every project is.
+The Article 4 branch starts from immutable mainline commit:
 
-The accepted Article 3 review head is:
+`553f457b01d554429f7117f1e2ca824386835e37`
 
-`18eac99295dad13cf8ccc907561579e785e32a6d`
+## Next after acceptance
 
-Its mainline merge commit is:
+**Article 5 — Building the Smallest Useful Repository Contract**
 
-`903f009bc4ed708d14c5ee19b683ae6445bb2717`
-
-Those immutable references are recorded in `docs/series.yaml` and `articles/README.md`.
-
-## Next
-
-**Article 4 — Reversible Architecture: ADRs, Experiments, and Exit Criteria**
-
-The next increment will formalize how consequential decisions move from hypothesis to accepted architecture and later to supersession when evidence changes. It will define the relationship among ADRs, experiments, assumptions, acceptance evidence, exit criteria, current-state architecture, and preserved historical rationale.
-
-Article 4 should leave us with a decision system strong enough to record choices such as the Article 3 authority map without turning provisional architecture into permanent dogma.
+Article 5 begins Arc II — Repository Kernel. It will turn the accepted first-principles architecture into the smallest useful root contract, including source-of-truth conventions, root metadata/documentation entry points, the first machine-verifiable invariants, and the smallest durable repository-owned project identity representation justified by the requirements/ADRs.
 
 ### Historical note
 

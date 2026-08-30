@@ -41,10 +41,29 @@ than it actually was.
 `decisions/`
 
 Contains Architecture Decision Records (ADRs) for consequential technical
-decisions.
+or architectural decisions.
 
 Accepted ADRs are historical records. When a decision changes, create a new
-ADR that supersedes the previous ADR rather than rewriting history.
+ADR that supersedes the previous ADR rather than rewriting substantive
+historical rationale.
+
+The current ADR lifecycle is defined in:
+
+`architecture/decision-system.md`
+
+## Experiments
+
+`experiments/`
+
+Contains standalone `EXP-NNNN` records for consequential, reusable, or
+reproducibility-sensitive experiments.
+
+Most ordinary experiments remain in the engineering journal. A standalone
+experiment record is used only when the evidence benefits from its own
+stable identity.
+
+Experiments produce evidence; they do not make architecture decisions by
+themselves.
 
 ## Verification
 

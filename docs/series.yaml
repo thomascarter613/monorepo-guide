@@ -9,6 +9,7 @@ repository:
 conventions:
   increment_format: "NNN"
   adr_format: "ADR-NNNN"
+  experiment_format: "EXP-NNNN"
   checkpoint_format: "article-NNN"
 
 increments:
@@ -84,3 +85,28 @@ increments:
       - "docs/architecture/authority-map.md"
       - "docs/architecture/requirements-ledger.md"
     note: "Article 3 assigns provisional per-concern authorities from dated first-party capability evidence. Final review separated durable repository-owned project identity from Moon's operational project/task graph so replacing the orchestrator does not redefine project identity. Later implementation experiments remain explicit falsification points."
+
+  - id: "004"
+    article_number: 4
+    slug: "reversible-architecture"
+    title: "Reversible Architecture: ADRs, Experiments, and Exit Criteria"
+    status: "draft"
+    branch: "series/04-reversible-architecture"
+    starting_commit: "553f457b01d554429f7117f1e2ca824386835e37"
+    article: "articles/04-reversible-architecture.md"
+    requirements: "docs/requirements/004-reversible-architecture.md"
+    journal: "docs/journal/004-reversible-architecture.md"
+    verification: "docs/verification/004-reversible-architecture.md"
+    architecture:
+      - "docs/architecture/decision-system.md"
+    decisions:
+      - "docs/decisions/ADR-0001-lightweight-reversible-decision-records.md"
+      - "docs/decisions/ADR-0002-one-authority-per-correctness-concern.md"
+      - "docs/decisions/ADR-0003-mise-executable-tool-version-authority.md"
+      - "docs/decisions/ADR-0004-bun-javascript-package-workspace-authority.md"
+      - "docs/decisions/ADR-0005-repository-owned-durable-project-identity.md"
+      - "docs/decisions/ADR-0006-moon-operational-project-task-authority.md"
+      - "docs/decisions/ADR-0007-nx-transformation-authority-only.md"
+      - "docs/decisions/ADR-0008-github-actions-hosted-ci-orchestration.md"
+      - "docs/decisions/ADR-0009-repository-owned-root-command-interface.md"
+    note: "Article 4 formalizes a lightweight reversible decision lifecycle, introduces standalone EXP-NNNN records only for consequential/reusable experiments, and converts Article 3 authority boundaries into independently supersedable ADRs. UMS-GEN-003 intentionally remains Partial until a real architecture decision is superseded."
