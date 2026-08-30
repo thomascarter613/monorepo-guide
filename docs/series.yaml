@@ -68,10 +68,12 @@ increments:
     article_number: 3
     slug: "choosing-authorities"
     title: "Choosing Authorities: Who Owns Packages, Tools, Tasks, Generation, and CI?"
-    status: "draft"
+    status: "merged"
     branch: "series/03-authority-boundaries"
     pull_request: 5
     starting_commit: "44951cd93646c2fb2dda63f384238401ef2bbc8c"
+    checkpoint_commit: "18eac99295dad13cf8ccc907561579e785e32a6d"
+    mainline_commit: "903f009bc4ed708d14c5ee19b683ae6445bb2717"
     article: "articles/03-choosing-authorities.md"
     requirements: "docs/requirements/003-authority-boundaries.md"
     journal: "docs/journal/003-authority-boundaries.md"
@@ -81,4 +83,4 @@ increments:
     architecture:
       - "docs/architecture/authority-map.md"
       - "docs/architecture/requirements-ledger.md"
-    note: "This increment assigns provisional per-concern authorities from dated first-party capability evidence while preserving later implementation experiments as falsification points."
+    note: "Article 3 assigns provisional per-concern authorities from dated first-party capability evidence. Final review separated durable repository-owned project identity from Moon's operational project/task graph so replacing the orchestrator does not redefine project identity. Later implementation experiments remain explicit falsification points."
