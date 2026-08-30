@@ -36,17 +36,20 @@ A second tool must not silently become another required source of truth for the 
 | supported executable/tool version declaration + installation | **mise** | Dev Containers/Nix may provision an outer environment later; Moon consumes executables | Moon/proto independently pinning the same tools; ad-hoc CI setup versions |
 | JavaScript package/workspace dependency state | **Bun** | Moon reads package metadata/lock state; Nx generators may edit manifests | Moon automatic dependency install as an independent policy; Nx package execution authority |
 | default JavaScript runtime for Bun-oriented projects | **Bun** | mise selects the installed Bun version | Moon/proto owning a second Bun version pin |
-| repository project identity / project graph | **Moon** | Bun manifests provide dependency evidence; Nx generators may inspect/write project state | Nx project graph becoming required runtime execution state |
+| durable repository project identity / stable project metadata | **repository-owned project contract** | ecosystem manifests provide evidence; Moon consumes/derives orchestration state; Nx generators may transform the contract | Moon/Nx/package-manager-specific identifiers becoming the only durable project identity |
+| operational repository project graph | **Moon** | Bun/Cargo/Python metadata may provide dependency evidence; Nx may inspect during transformations | Nx project graph becoming required routine execution state |
 | routine task DAG and dependency ordering | **Moon** | Bun/project commands are task leaves; root commands delegate | mise task DAG or Nx task pipeline duplicating routine build/test/lint/typecheck ordering |
 | affected project/target analysis | **Moon** | Git supplies change history | handwritten CI changed-file logic or Nx affected becoming a parallel authoritative calculation |
 | task-result hashing/cache semantics | **Moon** | hosted storage/transport may be added later | Nx cache or generic CI path cache independently representing task correctness |
-| generator/scaffolding transformations | **Nx** | Bun/Moon config is transformed as output | ad-hoc copy/paste generators that bypass repository contracts |
+| generator/scaffolding transformations | **Nx** | repository/Bun/Moon config is transformed as output | ad-hoc copy/paste generators that bypass repository contracts |
 | repository migrations/codemods | **Nx** | migration may transform any owned config under explicit scope | recreate-the-repo upgrades or parallel migration systems without a defined boundary |
 | hosted CI event/runner/permission orchestration | **GitHub Actions** | repository root commands and Moon execute repository work | workflow YAML reimplementing project/task dependency semantics |
 | developer-facing root command API | **repository-owned interface** | delegates to mise/Bun/Moon/Nx as appropriate | exposing every tool-specific invocation as the only supported UX |
 | ecosystem-native package semantics for future Rust/Python/etc. | **ecosystem-native authority** | mise provisions tools; Moon orchestrates tasks | forcing every ecosystem through JavaScript package semantics |
 
 The phrase **repository-owned interface** means the stable command surface is part of the repository contract even when its implementation delegates immediately to another authority. The implementation mechanism is deferred to the repository-kernel/execution articles.
+
+The phrase **repository-owned project contract** deliberately does not yet prescribe a manifest format. It means that durable project identity must belong to repository state that can survive replacement of Moon, Nx, Bun, or another implementation tool. Article 3 assigns Moon the operational project graph used for orchestration, not the permanent identity of the projects being orchestrated. The exact representation belongs to the repository-kernel work where we can design and test it without smuggling a tool-specific ID into the architecture.
 
 ---
 
@@ -140,7 +143,7 @@ We may revisit this after real implementation evidence, but the default architec
 
 ---
 
-# Boundary 3 — Moon owns project/task/affected/cache semantics
+# Boundary 3 — Moon owns operational project/task/affected/cache semantics
 
 Relevant product requirements:
 
@@ -156,7 +159,7 @@ Relevant product requirements:
 
 Moon is the provisional authority for:
 
-- repository project identity as used by orchestration;
+- the operational repository project graph used by orchestration;
 - project relationships needed by orchestration;
 - routine task definitions;
 - task dependency ordering;
@@ -165,9 +168,11 @@ Moon is the provisional authority for:
 - task-result hashing and cache semantics;
 - task graph introspection.
 
+Durable **project identity itself remains repository-owned**. Moon may assign or consume tool-specific project identifiers as part of its operational model, but those identifiers must not become the only representation of project identity that survives across orchestrator replacement, regeneration, or migration. The repository-kernel increment will decide the smallest durable project contract worth maintaining.
+
 This does **not** mean Moon owns ecosystem package semantics. Cargo, Bun, Python packaging tools, and other ecosystem-native systems remain authoritative for their local concerns.
 
-It also does not mean other tools can never contain a graph. Nx may construct a graph while a generator runs; GitHub Actions has a job graph; mise can model bootstrap dependencies. The invariant is that **normal repository work has one authoritative project/task DAG**.
+It also does not mean other tools can never contain a graph. Nx may construct a graph while a generator runs; GitHub Actions has a job graph; mise can model bootstrap dependencies. The invariant is that **normal repository work has one authoritative operational project/task DAG**.
 
 ## Bun scripts
 
@@ -215,6 +220,7 @@ If later generation/migration work cannot avoid such dependencies, that is evide
 - affected analysis misses required dependents or global/config invalidation scenarios;
 - cache keys cannot account for our relevant source/config/environment inputs;
 - cross-language project/task relationships require root architecture workarounds that violate the tool-independent system model;
+- Moon-specific project identifiers or metadata become impossible to derive from/export into the repository-owned project contract without unacceptable duplication;
 - Python integration remains materially second-class or unstable in the tested architecture;
 - CI/local task parity becomes substantially harder than with an alternative;
 - measured overhead is unacceptable for the repository size/profile.
@@ -241,7 +247,7 @@ Nx is provisionally authorized for:
 - codemods;
 - versioned migrations/upgrades.
 
-Nx may read repository/project metadata necessary to make those transformations. It may update Bun manifests, Moon project configuration, TypeScript configuration, documentation, or other owned state when the generator/migration contract says so.
+Nx may read repository/project metadata necessary to make those transformations. It may update the repository-owned project contract, Bun manifests, Moon project configuration, TypeScript configuration, documentation, or other owned state when the generator/migration contract says so.
 
 The output must be usable by the repository's actual authorities without requiring a second routine execution system.
 
@@ -250,8 +256,9 @@ Conceptually:
 ```text
 Nx generator
    ├─ creates project files
+   ├─ updates durable project identity/metadata -> repository-owned state
    ├─ updates package/workspace metadata -> Bun-owned state
-   ├─ creates/updates project/task metadata -> Moon-owned state
+   ├─ creates/updates orchestration project/task metadata -> Moon-owned state
    └─ updates docs/policy metadata
 
 Normal future workflow
@@ -395,9 +402,10 @@ The repository is TypeScript-first, not JavaScript-universal.
 
 When Rust, Python, or another ecosystem arrives:
 
+- durable project identity remains repository-owned rather than package-manager-specific;
 - its native package/build metadata remains authoritative for ecosystem-local semantics;
 - mise may provision the executable toolchain;
-- Moon orchestrates repository-level project/tasks and cross-project ordering;
+- Moon orchestrates the operational repository graph and cross-project task ordering;
 - generators/migrations may update its files where supported;
 - root commands provide a consistent entry point without pretending the ecosystems are identical.
 
@@ -418,6 +426,7 @@ The following would violate the current architecture unless an explicit later de
 5. **GitHub Actions → independent repository project/task dependency definitions**.
 6. **root wrapper → hand-maintained duplicate task ordering**.
 7. **Bun workspace → universal project identity**, excluding non-JavaScript projects.
+8. **Moon/Nx/tool-specific project IDs → sole durable project identity**, coupling repository identity to a replaceable implementation tool.
 
 These are review heuristics now and should become machine-verifiable invariants where practical later.
 
@@ -444,7 +453,7 @@ repository verification / Moon becomes available for normal tasks
 ```text
 repository command
     ↓
-Moon — select project/target DAG, affected scope, cache semantics
+Moon — select operational project/target DAG, affected scope, cache semantics
     ↓
 project task command
     ↓
@@ -459,8 +468,9 @@ repository command
 Nx generator
     ↓
 write repository state
+    ├─ repository-owned durable project identity/metadata
     ├─ Bun-owned package/workspace metadata
-    ├─ Moon-owned project/task metadata
+    ├─ Moon-owned orchestration project/task metadata
     └─ repository-owned documentation/policy metadata
     ↓
 normal repository verification through Moon
@@ -488,6 +498,7 @@ This document is an **authority decision**, not implementation proof.
 
 The repository still needs to demonstrate:
 
+- the smallest durable repository-owned project identity/metadata representation and its relationship to Moon project IDs;
 - mise version/lock/install behavior from fresh environments;
 - a Moon configuration that consumes mise-provided tools without silent version duplication;
 - Bun workspace and frozen-lockfile correctness;
@@ -498,11 +509,3 @@ The repository still needs to demonstrate:
 - Rust and Python integration;
 - remote cache/storage boundaries;
 - performance and CI-economics claims.
-
-Until those experiments pass, this map should be read as **the architecture we intend to prove**.
-
-## Change rule
-
-If evidence later changes an authority, do not rewrite the history so this decision appears inevitable.
-
-Update this current-state document, preserve the relevant journal/verification evidence, and create/supersede an ADR once the ADR system exists.
