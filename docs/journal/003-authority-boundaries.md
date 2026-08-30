@@ -297,19 +297,59 @@ Selecting Moon today does not let us claim the Python portion of our polyglot pr
 
 Python integration remains an explicit exit criterion. If the later Python increment requires root-level redesign, duplicated graph state, or unacceptable workarounds, the Moon authority decision must be reconsidered.
 
-## Provisional authority map after research
+## Finding 9 — review exposed a project-identity boundary hidden inside “project graph”
+
+### Context
+
+During final Article 3 review, the authority table assigned “repository project identity / project graph” to Moon. The earlier tool-independent system model, however, defines a Project as a repository-owned unit and deliberately distinguishes the repository workspace from Moon- or Nx-specific workspace views.
+
+### Expected
+
+We expected “Moon owns the project graph” to be a sufficiently precise authority statement.
+
+### Observed
+
+The phrase accidentally bundled two concerns with different lifecycle requirements:
+
+- **durable project identity** — what project this is across orchestrator replacement, regeneration, migration, and future ecosystem integration;
+- **operational project graph** — the graph Moon needs to perform orchestration, affected analysis, task ordering, and caching.
+
+If Moon-specific project IDs become the only durable identity, replacing Moon would become an identity migration rather than an orchestrator substitution. That weakens the tool-independent architecture established in Article 1.
+
+### Learned
+
+One-authority-per-concern only works if the concerns themselves are cut at the right semantic boundary. Identity and orchestration are related, but they are not the same authority.
+
+### Changed
+
+The authority map now states:
+
+- the **repository owns durable project identity / stable project metadata**;
+- **Moon owns the operational repository project graph** used for orchestration;
+- ecosystem manifests may provide evidence/input to that graph;
+- Nx may transform both repository-owned and Moon-owned state during controlled generation/migration;
+- no Moon/Nx/package-manager-specific identifier may become the sole durable project identity.
+
+The exact repository-owned project-identity representation is deliberately deferred to the repository-kernel increment rather than invented in Article 3.
+
+### Verification impact
+
+This does not reverse the Article 3 selection of Moon as task/affected/cache authority. It narrows and improves the decision. `UMS-EXE-001` remains Partial; the repository now has an additional future proof obligation around the repository-owned project contract and its mapping to Moon project IDs.
+
+## Provisional authority map after research and review
 
 | Concern | Provisional authority | Important non-authoritative participants |
 | --- | --- | --- |
 | Tool/runtime version resolution + install | mise | Moon consumes PATH binaries; Dev Containers/Nix boundary later |
 | JavaScript package/workspace install + lock state | Bun | Moon may read manifests/lockfile for graph/hash semantics |
 | Default JS runtime for Bun-oriented projects | Bun | mise selects installed Bun version |
-| Repository project graph | Moon | Bun metadata may provide dependency evidence; Nx may inspect during generation |
+| Durable repository project identity / stable project metadata | Repository-owned project contract | ecosystem manifests provide evidence; Moon consumes/derives; Nx may transform |
+| Operational repository project graph | Moon | ecosystem package metadata may provide dependency evidence; Nx may inspect during generation |
 | Routine task graph/execution | Moon | Bun scripts are leaf commands; mise tasks only bootstrap/environment |
 | Affected analysis | Moon | Git provides change history/input |
 | Task-result cache | Moon | CI cache may later cache bootstrap/download state, not duplicate task-result authority |
-| Project generation | Nx | generated output must conform to Bun/Moon repository contracts |
-| Repository migrations/codemods | Nx | migrations may update Bun/Moon configuration as data |
+| Project generation | Nx | generated output must conform to repository/Bun/Moon contracts |
+| Repository migrations/codemods | Nx | migrations may update repository/Bun/Moon configuration as data |
 | Hosted CI event/runner/permission orchestration | GitHub Actions | repository commands/Moon perform equivalent repo work |
 | Root developer command surface | Repository-owned interface | delegates to mise/Bun/Moon/Nx as appropriate |
 
@@ -332,6 +372,7 @@ No other implementation requirement advances merely because an authority has bee
 
 ## Deliberately unresolved
 
+- the smallest durable repository-owned project identity/metadata representation and how it maps to Moon project IDs;
 - exact Moon v2 configuration needed to retain JavaScript/Bun ecosystem integration while preventing version/dependency-install authority overlap;
 - exact Nx configuration footprint required for generation/migrations without inferred routine tasks becoming part of normal operation;
 - whether Bun remains the runtime for every TypeScript project or only the default/runtime for projects that require it;
@@ -348,7 +389,8 @@ No other implementation requirement advances merely because an authority has bee
 - updated `UMS-EXE-001` conservatively to Partial;
 - wrote Article 3;
 - updated architecture/root/article/series indexes;
-- produced requirement-by-requirement verification with PASS for all ten increment requirements.
+- produced requirement-by-requirement verification with PASS for all ten increment requirements;
+- refined the final authority map during review so durable project identity remains repository-owned while Moon owns the operational project graph.
 
 ## Verification result
 
