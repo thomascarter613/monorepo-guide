@@ -63,3 +63,22 @@ increments:
     architecture:
       - "docs/architecture/requirements-ledger.md"
     note: "This is the first series increment whose requirements and journal were created prospectively under the already-merged engineering-record protocol. The reviewed PR head and mainline merge commit are recorded separately as immutable evidence."
+
+  - id: "003"
+    article_number: 3
+    slug: "choosing-authorities"
+    title: "Choosing Authorities: Who Owns Packages, Tools, Tasks, Generation, and CI?"
+    status: "draft"
+    branch: "series/03-authority-boundaries"
+    pull_request: 5
+    starting_commit: "44951cd93646c2fb2dda63f384238401ef2bbc8c"
+    article: "articles/03-choosing-authorities.md"
+    requirements: "docs/requirements/003-authority-boundaries.md"
+    journal: "docs/journal/003-authority-boundaries.md"
+    verification: "docs/verification/003-authority-boundaries.md"
+    artifacts:
+      - "docs/artifacts/003-authority-capability-evidence.md"
+    architecture:
+      - "docs/architecture/authority-map.md"
+      - "docs/architecture/requirements-ledger.md"
+    note: "This increment assigns provisional per-concern authorities from dated first-party capability evidence while preserving later implementation experiments as falsification points."
