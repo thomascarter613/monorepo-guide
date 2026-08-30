@@ -14,6 +14,10 @@ Working branch:
 
 `series/04-reversible-architecture`
 
+Pull request:
+
+`#6`
+
 ## Objective
 
 See `../requirements/004-reversible-architecture.md`.
@@ -280,6 +284,16 @@ The assumption that standalone experiments should be exceptional was strengthene
 - What smallest durable project-identity representation should Article 5 introduce under `ADR-0005`?
 - When the first real supersession occurs, what automation should verify that the old ADR, new ADR, architecture docs, migration, and verification remain mutually linked?
 - Should future performance experiments standardize hardware/runner/workload metadata further once representative workloads exist?
+
+## Review checkpoint
+
+Draft pull request:
+
+`#6 — Article 4: establish reversible architecture decisions`
+
+After PR-number bookkeeping, the branch remains based directly on accepted `main` commit `553f457b01d554429f7117f1e2ca824386835e37` with no stacked dependency on the Article 3 branch.
+
+The final branch comparison should be treated as PR metadata because any attempt to write a commit SHA/count into the commit that contains itself creates the same recursive metadata problem identified earlier in the series.
 
 ## Next
 
