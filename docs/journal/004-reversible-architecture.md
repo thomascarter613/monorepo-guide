@@ -1,6 +1,6 @@
 # 004 — Reversible Architecture
 
-Status: **In progress**
+Status: **Complete — verification passed, pending review checkpoint**
 
 ## Starting state
 
@@ -77,54 +77,214 @@ References reviewed:
 - https://github.com/adr/madr
 - https://adr.github.io/madr/
 
-### Initial conclusion from references
+### Conclusion from references
 
-We should not copy a template wholesale. Our repository already has requirements, journal, verification, and artifact layers that carry information many generic ADR templates need to embed directly.
+We did not copy a generic ADR template wholesale. Our repository already has requirements, journal, verification, and artifact layers that carry information many generic ADR templates need to embed directly.
 
-Our ADR can therefore stay relatively small while adding two repository-specific concepts that matter to this series:
+Our ADR therefore stays relatively small while adding two repository-specific concepts that matter to this series:
 
 1. **evidence/requirement links** — because decisions are evaluated against an existing product contract;
 2. **reconsideration criteria** — because the series explicitly wants falsifiable, reversible architecture.
 
-## Working decision model
+## Decision 1 — ADR significance uses the future-maintainer test
 
-The current hypothesis is:
+We adopted this practical threshold:
+
+> Would a future maintainer reasonably need to know why the repository is constrained this way and what would justify changing it?
+
+Strong triggers include authority assignment, repository-wide invariants, foundational tools with migration cost, stable interfaces, security/trust boundaries, durable schema/migration choices, cross-project/language constraints, and non-obvious decisions likely to be relitigated.
+
+Routine local implementation detail, mechanical refactoring, formatting/naming, and temporary experiments do not normally justify an ADR.
+
+## Decision 2 — ADR IDs are allocated while Proposed
+
+We considered allocating IDs only after acceptance because that produces a tidier accepted sequence.
+
+We rejected that approach because journals, experiments, PRs, and artifacts need a stable decision identity while the proposal is still being evaluated.
+
+Therefore the ID is allocated when the proposal record is created. Rejected and Withdrawn records keep their IDs as honest history.
+
+## Decision 3 — remove Deprecated from the ADR lifecycle
+
+The initial decision directory allowed:
 
 ```text
-requirement / problem / observed failure
-        ↓
-assumptions + alternatives
-        ↓
-experiment(s), when uncertainty requires evidence
-        ↓
-ADR proposal
-        ↓
-accepted decision
-        ↓
-current-state architecture + implementation
-        ↓
-verification / operational evidence
-        ↓
-new evidence violates assumptions or exit criteria
-        ↓
-new ADR supersedes old ADR
-        ↓
-current-state architecture changes
+Proposed
+Accepted
+Rejected
+Deprecated
+Superseded
 ```
 
-Important distinctions:
+`Deprecated` is useful for APIs/artifacts that remain temporarily supported, but it is ambiguous for architecture decisions: is the decision still current or not?
 
-- **ADR status** answers whether the architecture decision is in force historically/currently.
-- **Requirement state** answers how much evidence exists that the product promise is satisfied.
-- **Experiment conclusion** answers what the experiment observed under its stated conditions.
-- **Current-state architecture** answers how the repository is intended to work now.
+The final lifecycle is:
 
-These states must not collapse into one another.
+```text
+Proposed -> Accepted -> Superseded
+Proposed -> Rejected
+Proposed -> Withdrawn
+```
 
-## Next investigation
+Rejected, Withdrawn, and Superseded are terminal historical states.
 
-1. Define the minimal ADR fields and status transitions.
-2. Decide whether Article 3's authority map is one ADR or several.
-3. Define standalone experiment-record rules/template.
-4. Apply the model to Article 3 decisions.
-5. Verify cross-linking and supersession mechanics structurally.
+## Decision 4 — accepted ADR substance is frozen; supersession metadata is not
+
+A strict “never edit an accepted ADR” rule collides with discoverability after supersession.
+
+We resolved the tension by distinguishing substantive history from lifecycle metadata.
+
+After acceptance, do not rewrite:
+
+- context;
+- decision;
+- rationale;
+- alternatives;
+- consequences;
+- assumptions;
+- original evidence interpretation;
+- original reconsideration criteria.
+
+Later maintenance may:
+
+- change `Accepted` to `Superseded`;
+- add `Superseded by: ADR-NNNN`;
+- repair broken links;
+- fix non-semantic typos.
+
+The new ADR owns the changed rationale/current decision.
+
+## Decision 5 — experiment records are exceptional, not mandatory
+
+Most experiments remain inside the increment journal.
+
+Standalone records use `EXP-NNNN` only when the evidence is reusable, consequential, reproduction-sensitive, compares major alternatives, or directly tests an ADR assumption/reconsideration criterion.
+
+The experiment template separates:
+
+```text
+hypothesis/question
+method + controlled inputs
+expected observation
+actual observation
+interpretation
+limitations
+raw/durable evidence
+```
+
+Experiments use `Planned`, `Running`, `Concluded`, and `Abandoned`; they are not Accepted/Rejected because experiments produce evidence rather than architecture decisions.
+
+No `EXP-0001` was created by this increment. Article 3 capability research remains an artifact because it was documentation research rather than a controlled executable experiment.
+
+## Decision 6 — Article 3 authority choices become separate ADRs
+
+A single umbrella ADR such as:
+
+```text
+Use mise + Bun + Moon + Nx + GitHub Actions
+```
+
+would couple choices that have different evidence and different exit criteria.
+
+We therefore created:
+
+- `ADR-0001` — lightweight reversible architecture decision records;
+- `ADR-0002` — one authority per repository correctness concern;
+- `ADR-0003` — mise executable/tool version authority;
+- `ADR-0004` — Bun JavaScript package/workspace authority;
+- `ADR-0005` — repository-owned durable project identity;
+- `ADR-0006` — Moon operational project/task/affected/cache authority;
+- `ADR-0007` — Nx transformation-only authority;
+- `ADR-0008` — GitHub Actions hosted-CI-only authority;
+- `ADR-0009` — repository-owned stable root command interface.
+
+This lets a later decision replace one authority without forcing unrelated decisions to move.
+
+## Decision 7 — decision state remains independent from requirement evidence state
+
+We explicitly preserve cases such as:
+
+```text
+ADR-0006: Accepted
+UMS-EXE-001: Partial
+```
+
+An accepted architecture decision identifies what we are currently choosing to implement/prove. It does not prove the product requirement already works.
+
+No Article 3 implementation requirement was advanced merely because an ADR now exists.
+
+## Decision 8 — do not fabricate a supersession
+
+`UMS-GEN-003` remains Partial because its remaining decisive evidence includes the first real superseded ADR/migration.
+
+We considered the process implication: Article 4 could manufacture a trivial decision and supersede it immediately to demonstrate mechanics.
+
+We rejected that as evidence gaming.
+
+The supersession mechanism is defined and structurally verified, but the first genuine architecture reversal will provide the remaining real-world evidence.
+
+## Outputs
+
+Created:
+
+- `../../articles/04-reversible-architecture.md`;
+- `../architecture/decision-system.md`;
+- `../decisions/ADR-TEMPLATE.md`;
+- `../experiments/README.md`;
+- `../experiments/EXP-TEMPLATE.md`;
+- `../requirements/004-reversible-architecture.md`;
+- `../journal/004-reversible-architecture.md`;
+- `../verification/004-reversible-architecture.md`;
+- `ADR-0001` through `ADR-0009` under `../decisions/`.
+
+Updated:
+
+- root `README`;
+- `../../articles/README.md`;
+- `../README.md`;
+- `../architecture/README.md`;
+- `../decisions/README.md`;
+- `../series.yaml`;
+- `../series-roadmap.md`.
+
+## Verification
+
+See:
+
+`../verification/004-reversible-architecture.md`
+
+Result: **PASS for all ten Article 4 increment requirements**.
+
+Important limitations preserved by verification:
+
+- no monorepo implementation toolchain was installed/configured;
+- no Accepted ADR is treated as executable requirement proof;
+- no standalone experiment was invented without an actual experiment;
+- no superseded ADR was invented solely to close `UMS-GEN-003`.
+
+## Changes from initial assumptions
+
+The main assumptions survived with four refinements:
+
+1. `Deprecated` was removed from the decision lifecycle; `Superseded` is the unambiguous replacement state for previously accepted architecture.
+2. ADR identity is allocated at proposal time, not acceptance time.
+3. accepted ADR immutability has a narrow, explicit supersession/link-metadata exception.
+4. Article 3 required multiple independently reversible ADRs rather than one stack-level decision.
+
+The assumption that standalone experiments should be exceptional was strengthened: Article 4 intentionally creates the experiment schema without creating an artificial experiment instance.
+
+## Remaining questions
+
+- At what decision volume should ADR/experiment indexes become generated rather than hand-maintained?
+- Should machine-readable frontmatter be added after real automation needs reveal stable metadata fields?
+- What smallest durable project-identity representation should Article 5 introduce under `ADR-0005`?
+- When the first real supersession occurs, what automation should verify that the old ADR, new ADR, architecture docs, migration, and verification remain mutually linked?
+- Should future performance experiments standardize hardware/runner/workload metadata further once representative workloads exist?
+
+## Next
+
+Article 5 begins Arc II — Repository Kernel:
+
+**Building the Smallest Useful Repository Contract**
+
+Its first architectural pressure point is now clear: `ADR-0005` requires durable project identity to remain repository-owned, but deliberately does not dictate its representation. Article 5 should determine the smallest project/root metadata contract that earns that responsibility without creating an unnecessary universal ontology.
