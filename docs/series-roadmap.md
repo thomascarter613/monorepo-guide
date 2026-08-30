@@ -270,7 +270,8 @@ Each article should:
 - [x] Article 1 repository-platform system model
 - [x] Article 2 living product requirements/evidence ledger
 - [x] Article 3 provisional authority map and shadow-authority boundaries
-- [ ] Arc I implementation complete
+- [x] Article 4 reversible ADR/experiment/evidence lifecycle
+- [x] Arc I implementation complete
 - [ ] Repository kernel complete
 - [ ] Reproducible environment complete
 - [ ] Workspace/dependency system complete
